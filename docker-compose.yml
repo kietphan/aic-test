@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  aic-db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3310:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  aic-be:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 3500:3000
+    depends_on:
+      - aic-db
+    environment:
+      DB_HOST: aic-db
+      DB_PORT: 3306
+  aic-fe:
+    build:
+      dockerfile: Dockerfile.fe
+      context: .
+    volumes:
+      - ./aic-fe:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - aic-be
+    environment:
+      DB_HOST: aic-db
+      DB_PORT: 3306
+volumes:
+  mysql_data:

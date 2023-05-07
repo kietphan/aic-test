@@ -1,0 +1,10 @@
+FROM node:16.20
+WORKDIR /app
+ADD Gemfile* ./
+COPY ./aic-fe/ ./
+ENV LANG C.UTF-8
+
+RUN yarn
+COPY ./aic-fe/dockercmd.sh /dockercmd.sh
+RUN chmod +x /dockercmd.sh
+ENTRYPOINT ["/dockercmd.sh"]
