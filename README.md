@@ -1,24 +1,9 @@
 # README
+The project to CRUD for student
+## How to build it
+### Clone source code
+```
+docker compose up
+```
+Then visit the url `http://localhost:3000`
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
